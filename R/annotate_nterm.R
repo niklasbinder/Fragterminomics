@@ -9,7 +9,7 @@
 #'
 #' @examples
 annotate_nterm <- function(peptidestsv, # peptide.tsv table
-                           tmtmass = 304.2072, # either 304.2072 for 16plex or 229.1629 for 10/11plex
+                           tmtmass = "TMT16", # either "TMT16" (value 304.2072) for 16plex or "TMT10" (value 229.1629) for 10/11plex
                            protease_specificity = "R|K") # or R for argc
 {
 
@@ -17,20 +17,15 @@ require(dplyr)
 require(stringr)
 require(magrittr)
 
-if (tmtmass == 304.2072){
+if (tmtmass == "TMT16"){
 
-                    nterm_tmt <- "N-term\\(304.2072\\)"
-                    ktmt <- "K\\(304.2072\\)"
+                    nterm_tmt <- "N-term\\(304.20[0-9][0-9]\\)"
+                    ktmt <- "K\\(304.20[0-9][0-9]\\)"
 
-} else if (tmtmass == 229.1629){
+} else if (tmtmass == "TMT10"){
 
-                    nterm_tmt <- "N-term\\(229.1629\\)"
-                    ktmt <- "K\\(229.1629\\)"
-
-} else if (tmtmass == 304.2071){
-
-                    nterm_tmt <- "N-term\\(304.2071\\)"
-                    ktmt <- "K\\(304.20721\\)"
+                    nterm_tmt <- "N-term\\(229.16[0-9][0-9]\\)"
+                    ktmt <- "K\\(229.16[0-9][0-9]\\)"
 
 } else {
 
